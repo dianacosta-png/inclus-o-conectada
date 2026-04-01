@@ -6,7 +6,7 @@ import ifInclusaoLogo from "@/assets/if-inclusao-logo.png";
 const navItems = [
   { label: "Início", href: "#" },
   { label: "Sobre", href: "#sobre" },
-  { label: "Pilares", href: "#pilares" },
+  
   { label: "Links", href: "#links" },
 ];
 
