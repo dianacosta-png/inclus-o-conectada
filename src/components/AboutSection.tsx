@@ -38,9 +38,8 @@ const AboutSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Sobre o <span className="text-primary">Projeto</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            O IF Inclusão atua na promoção de políticas e ações que garantam a participação efetiva
-            de pessoas com deficiência em todos os espaços.
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            O IF Inclusão, em sua 14ª edição, é um evento anual promovido pela Coordenadoria do Núcleo de Atendimento às Pessoas com Necessidades Específicas (NAPNE) do IFPR – Campus Telêmaco Borba.
           </p>
         </motion.div>
 
