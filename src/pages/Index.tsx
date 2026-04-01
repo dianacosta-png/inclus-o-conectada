@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import PillarsSection from "@/components/PillarsSection";
+
 import LinksSection from "@/components/LinksSection";
 import Footer from "@/components/Footer";
 
