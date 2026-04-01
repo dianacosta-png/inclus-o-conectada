@@ -1,27 +1,34 @@
 import { motion } from "framer-motion";
-import { Target, Eye, Handshake } from "lucide-react";
+import { Heart, Users, ShieldCheck, Ban } from "lucide-react";
 
 const items = [
   {
-    icon: Target,
-    title: "Missão",
+    icon: Heart,
+    title: "Direitos e Dignidade",
     description:
-      "Promover a inclusão plena de pessoas com deficiência no ambiente educacional e social, eliminando barreiras e criando oportunidades igualitárias.",
+      "Fomentar o respeito pelos direitos, dignidade e inclusão das pessoas com necessidades específicas.",
     className: "gradient-card-teal",
   },
   {
-    icon: Eye,
-    title: "Visão",
+    icon: Users,
+    title: "Conscientização",
     description:
-      "Ser referência em práticas inclusivas, construindo uma comunidade onde a diversidade é celebrada e todos têm acesso às mesmas oportunidades.",
+      "Desenvolver ações de conscientização para garantir o êxito e a permanência de estudantes do público de inclusão.",
     className: "gradient-card-warm",
   },
   {
-    icon: Handshake,
-    title: "Valores",
+    icon: ShieldCheck,
+    title: "Acesso à Informação",
     description:
-      "Respeito à diversidade, empatia, acessibilidade, equidade, colaboração e compromisso com os direitos humanos.",
+      "Romper barreiras atitudinais por meio do acesso à informação.",
     className: "gradient-card-purple",
+  },
+  {
+    icon: Ban,
+    title: "Prevenção à Violência",
+    description:
+      "Prevenir tipos de violência (bullying, discriminação e preconceito) no ambiente escolar.",
+    className: "gradient-card-teal",
   },
 ];
 
