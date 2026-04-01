@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import napneLogo from "@/assets/napne-logo.png";
+import ifInclusaoLogo from "@/assets/if-inclusao-logo.png";
 
 const navItems = [
   { label: "Início", href: "#" },
@@ -17,7 +18,7 @@ const Navbar = () => {
       <div className="container flex items-center justify-between h-16">
         <a href="#" className="flex items-center gap-3">
           <img src={napneLogo} alt="Logo NAPNE" className="h-10 w-auto" />
-          <span className="text-xl font-bold">IF <span className="text-primary">Inclusão</span></span>
+          <img src={ifInclusaoLogo} alt="Logo IF Inclusão" className="h-10 w-auto" />
         </a>
 
         {/* Desktop */}
