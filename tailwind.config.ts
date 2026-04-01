@@ -17,6 +17,7 @@ export default {
         heading: ['Poppins', 'system-ui', 'sans-serif'],
         body: ['Poppins', 'system-ui', 'sans-serif'],
         display: ['"Baloo 2"', 'system-ui', 'sans-serif'],
+        blueberry: ['Blueberry', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",

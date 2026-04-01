@@ -18,7 +18,7 @@ const HeroSection = () => {
             <Heart className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Promovendo acessibilidade e igualdade</span>
           </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 font-display">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 font-blueberry">
             <span className="text-secondary">IF</span>{" "}
             <span className="bg-gradient-to-r from-primary to-green bg-clip-text text-transparent">Inclusão</span>
           </h1>
