@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ['Poppins', 'system-ui', 'sans-serif'],
         body: ['Poppins', 'system-ui', 'sans-serif'],
+        display: ['"Baloo 2"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
