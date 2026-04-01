@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import napneLogo from "@/assets/napne-logo.png";
 
 const navItems = [
   { label: "Início", href: "#" },
