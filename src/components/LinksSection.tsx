@@ -4,48 +4,40 @@ import { ExternalLink, FileText, Building2, GraduationCap, Globe, BookMarked, Ph
 const links = [
   {
     icon: FileText,
-    title: "Lei Brasileira de Inclusão",
-    description: "Lei nº 13.146/2015 — Estatuto da Pessoa com Deficiência",
-    url: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm",
-    tag: "Legislação",
-  },
-  {
-    icon: Building2,
-    title: "Secretaria Nacional dos Direitos da PcD",
-    description: "Políticas públicas e programas do Governo Federal",
-    url: "https://www.gov.br/mdh/pt-br/navegue-por-temas/pessoa-com-deficiencia",
-    tag: "Governo",
-  },
-  {
-    icon: GraduationCap,
-    title: "NAPNE — Núcleo de Apoio",
-    description: "Núcleos de atendimento às pessoas com necessidades específicas nos IFs",
+    title: "Formulário de Inscrição",
+    description: "Preencha o formulário para participar do projeto IF Inclusão",
     url: "#",
-    tag: "Educação",
-  },
-  {
-    icon: Globe,
-    title: "W3C — Acessibilidade Web",
-    description: "Diretrizes de acessibilidade para conteúdo web (WCAG)",
-    url: "https://www.w3.org/WAI/standards-guidelines/wcag/",
-    tag: "Tecnologia",
+    tag: "Inscrição",
   },
   {
     icon: BookMarked,
-    title: "Cartilha de Acessibilidade",
-    description: "Guia prático sobre acessibilidade na comunicação",
+    title: "Regulamento",
+    description: "Regras e diretrizes para participação no projeto",
+    url: "#",
+    tag: "Documento",
+  },
+  {
+    icon: Globe,
+    title: "Guia de Inclusão e Acessibilidade",
+    description: "Orientações práticas sobre inclusão e acessibilidade",
+    url: "#",
+    tag: "Guia",
+  },
+  {
+    icon: GraduationCap,
+    title: "Apresentação da Oficina Preparatória",
+    description: "Material da oficina preparatória do projeto",
+    url: "#",
+    tag: "Oficina",
+  },
+  {
+    icon: Building2,
+    title: "Materiais Gerais sobre Inclusão",
+    description: "Recursos e referências sobre inclusão e diversidade",
     url: "#",
     tag: "Material",
   },
-  {
-    icon: Phone,
-    title: "Disque 100",
-    description: "Canal de denúncias de violação de direitos humanos",
-    url: "https://www.gov.br/mdh/pt-br/acesso-a-informacao/disque-100-1",
-    tag: "Apoio",
-  },
 ];
-
 const LinksSection = () => {
   return (
     <section id="links" className="py-24 bg-card">
