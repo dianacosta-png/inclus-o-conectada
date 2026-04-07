@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, FileText, Building2, GraduationCap, Globe, BookMarked, Phone } from "lucide-react";
+import { ExternalLink, FileText, Building2, GraduationCap, Globe, BookMarked } from "lucide-react";
 
 const links = [
   {
