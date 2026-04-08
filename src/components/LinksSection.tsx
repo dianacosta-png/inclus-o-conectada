@@ -112,7 +112,9 @@ const LinksSection = () => {
                     className="overflow-hidden"
                   >
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8">
-                      {categories.map((link, i) => (
+                      {categories
+                        .filter((link) => year === 2026 || (link.tag !== "Inscrição" && link.tag !== "Guia"))
+                        .map((link, i) => (
                         <motion.a
                           key={`${year}-${link.title}`}
                           href={link.url}
