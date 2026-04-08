@@ -33,6 +33,9 @@ const categories = [
     description: "Material da oficina preparatória do projeto",
     url: "#",
     tag: "Oficina",
+    yearUrls: {
+      2025: "https://drive.google.com/file/d/1SWWA9J0HfW844hAekp7YXs_-kFR0eK7M/view?usp=drive_link",
+    } as Record<number, string>,
   },
   {
     icon: Building2,
@@ -40,6 +43,9 @@ const categories = [
     description: "Recursos e referências sobre inclusão e diversidade",
     url: "#",
     tag: "Material",
+    yearUrls: {
+      2025: "https://drive.google.com/drive/folders/1srKraqPgTqUrLYlI2C4BAQye2um4RpI2?usp=drive_link",
+    } as Record<number, string>,
   },
   {
     icon: Camera,
@@ -47,6 +53,9 @@ const categories = [
     description: "Galeria de fotos e vídeos do projeto",
     url: "#",
     tag: "Mídia",
+    yearUrls: {
+      2025: "https://drive.google.com/file/d/1pt0JJBacKeYhEdFUyFy-KYj1_EfGjyH2/view?usp=drive_link",
+    } as Record<number, string>,
   },
   {
     icon: Newspaper,
