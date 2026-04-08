@@ -84,7 +84,7 @@ const LinksSection = () => {
             Links de <span className="text-primary">Consulta</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Recursos essenciais sobre inclusão, legislação e acessibilidade.
+            Recursos essenciais sobre o projeto, inclusão, legislação e acessibilidade.
           </p>
         </motion.div>
 
