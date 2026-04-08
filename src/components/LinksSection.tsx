@@ -120,7 +120,7 @@ const LinksSection = () => {
                         .map((link, i) => (
                         <motion.a
                           key={`${year}-${link.title}`}
-                          href={link.url}
+                          href={link.yearUrls?.[year] || link.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           initial={{ opacity: 0, y: 20 }}
