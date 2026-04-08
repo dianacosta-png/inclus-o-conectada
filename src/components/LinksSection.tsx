@@ -17,7 +17,7 @@ const categories = [
     url: "#",
     tag: "Documento",
     yearUrls: {
-      2025: "/docs/Proposta_2025_Integrado_e_Graduacao.pdf",
+      2025: "https://drive.google.com/file/d/1DM8XwhiaOvuDXvAE2ymw381l_77sV0-Y/view?usp=sharing",
     } as Record<number, string>,
   },
   {
