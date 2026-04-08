@@ -16,6 +16,9 @@ const categories = [
     description: "Regras e diretrizes para participação no projeto",
     url: "#",
     tag: "Documento",
+    yearUrls: {
+      2025: "/docs/Proposta_2025_Integrado_e_Graduacao.pdf",
+    } as Record<number, string>,
   },
   {
     icon: Globe,
@@ -117,7 +120,7 @@ const LinksSection = () => {
                         .map((link, i) => (
                         <motion.a
                           key={`${year}-${link.title}`}
-                          href={link.url}
+                          href={link.yearUrls?.[year] || link.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           initial={{ opacity: 0, y: 20 }}
