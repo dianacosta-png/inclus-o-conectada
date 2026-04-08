@@ -54,6 +54,9 @@ const categories = [
     description: "Notícias e novidades sobre o projeto IF Inclusão",
     url: "#",
     tag: "Notícia",
+    yearUrls: {
+      2025: "https://ifpr.edu.br/telemaco-borba/13o-if-inclusao-2025-educacao-inovacao-e-protagonismo-estudantil-na-construcao-de-uma-cultura-de-inclusao/",
+    } as Record<number, string>,
   },
 ];
 
