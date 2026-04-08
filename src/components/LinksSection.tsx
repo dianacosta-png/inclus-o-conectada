@@ -16,6 +16,9 @@ const categories = [
     description: "Regras e diretrizes para participação no projeto",
     url: "#",
     tag: "Documento",
+    yearUrls: {
+      2025: "/docs/Proposta_2025_Integrado_e_Graduacao.pdf",
+    } as Record<number, string>,
   },
   {
     icon: Globe,
