@@ -4,8 +4,13 @@ backend:
 
 locale: pt
 
+site_url: https://if-inclusao.netlify.app
+logo_url: /favicon.png
+
 media_folder: public/fotos
 public_folder: /fotos
+
+search: true
 
 collections:
   - name: "secoes"
@@ -16,178 +21,211 @@ collections:
       # HERO
       # ──────────────────────────────────────────
       - name: "hero"
-        label: "Início (Hero)"
+        label: "🏠 Início (Hero)"
         file: "src/content/hero.json"
         format: json
         fields:
           - label: "Texto do selo"
             name: "badge"
             widget: "string"
-            hint: "Ex: Promovendo acessibilidade e igualdade"
+            hint: "Frase curta exibida no topo da página inicial. Ex: Promovendo acessibilidade e igualdade"
           - label: "Descrição"
             name: "description"
             widget: "text"
-          - label: "Texto do botão principal"
+            hint: "Parágrafo de apresentação do projeto."
+          - label: "Botão principal"
             name: "button1"
             widget: "string"
-          - label: "Texto do botão secundário"
+            hint: "Texto do botão colorido. Ex: Conheça o Projeto"
+          - label: "Botão secundário"
             name: "button2"
             widget: "string"
+            hint: "Texto do botão com borda. Ex: Links Úteis"
 
       # ──────────────────────────────────────────
       # SOBRE
       # ──────────────────────────────────────────
       - name: "about"
-        label: "Sobre o Projeto"
+        label: "📋 Sobre o Projeto"
         file: "src/content/about.json"
         format: json
         fields:
           - label: "Título da seção"
             name: "title"
             widget: "string"
+            hint: "Ex: Sobre o Projeto"
           - label: "Descrição da seção"
             name: "description"
             widget: "text"
+            hint: "Texto explicativo exibido abaixo do título."
           - label: "Cards"
             name: "items"
             widget: "list"
+            label_singular: "Card"
+            summary: "{{fields.title}}"
+            hint: "Os 4 cards de destaque do projeto."
             fields:
               - label: "Ícone"
                 name: "icon"
                 widget: "select"
+                hint: "Ícone exibido no card."
                 options:
-                  - { label: "Coração", value: "Heart" }
-                  - { label: "Pessoas", value: "Users" }
-                  - { label: "Escudo", value: "ShieldCheck" }
-                  - { label: "Proibido", value: "Ban" }
-              - label: "Título"
+                  - { label: "❤️ Coração", value: "Heart" }
+                  - { label: "👥 Pessoas", value: "Users" }
+                  - { label: "🛡️ Escudo", value: "ShieldCheck" }
+                  - { label: "🚫 Proibido", value: "Ban" }
+              - label: "Título do card"
                 name: "title"
                 widget: "string"
-              - label: "Descrição"
+              - label: "Descrição do card"
                 name: "description"
                 widget: "text"
               - label: "Cor do card"
                 name: "className"
                 widget: "select"
+                hint: "Cor de fundo do card."
                 options:
-                  - { label: "Verde", value: "gradient-card-teal" }
-                  - { label: "Laranja", value: "gradient-card-warm" }
-                  - { label: "Roxo", value: "gradient-card-purple" }
+                  - { label: "🟢 Verde", value: "gradient-card-teal" }
+                  - { label: "🟠 Laranja", value: "gradient-card-warm" }
+                  - { label: "🟣 Roxo", value: "gradient-card-purple" }
 
       # ──────────────────────────────────────────
       # LINKS
       # ──────────────────────────────────────────
       - name: "links"
-        label: "Links de Consulta"
+        label: "🔗 Links de Consulta"
         file: "src/content/links.json"
         format: json
         fields:
           - label: "Categorias de links"
             name: "categories"
             widget: "list"
+            label_singular: "Categoria"
+            summary: "{{fields.tag}} — {{fields.title}}"
+            hint: "Cada categoria aparece como um card na seção de Links."
             fields:
               - label: "Ícone"
                 name: "icon"
                 widget: "select"
+                hint: "Ícone do card."
                 options:
-                  - { label: "Documento", value: "FileText" }
-                  - { label: "Livro marcado", value: "BookMarked" }
-                  - { label: "Globo", value: "Globe" }
-                  - { label: "Formatura", value: "GraduationCap" }
-                  - { label: "Prédio", value: "Building2" }
-                  - { label: "Câmera", value: "Camera" }
-                  - { label: "Jornal", value: "Newspaper" }
+                  - { label: "📄 Documento", value: "FileText" }
+                  - { label: "📖 Livro marcado", value: "BookMarked" }
+                  - { label: "🌐 Globo", value: "Globe" }
+                  - { label: "🎓 Formatura", value: "GraduationCap" }
+                  - { label: "🏢 Prédio", value: "Building2" }
+                  - { label: "📷 Câmera", value: "Camera" }
+                  - { label: "📰 Jornal", value: "Newspaper" }
               - label: "Título"
                 name: "title"
                 widget: "string"
               - label: "Descrição"
                 name: "description"
                 widget: "text"
-              - label: "URL padrão (use # se não houver)"
+                hint: "Texto curto exibido no card."
+              - label: "URL padrão"
                 name: "url"
                 widget: "string"
+                hint: "Use # se não houver URL padrão."
               - label: "Tipo (tag)"
                 name: "tag"
                 widget: "select"
+                hint: "Categoria do link, exibida como etiqueta no canto do card."
                 options:
-                  - "Inscrição"
-                  - "Documento"
-                  - "Proposta"
-                  - "Guia"
-                  - "Oficina"
-                  - "Material"
-                  - "Mídia"
-                  - "Notícia"
+                  - { label: "Inscrição", value: "Inscrição" }
+                  - { label: "Documento", value: "Documento" }
+                  - { label: "Proposta", value: "Proposta" }
+                  - { label: "Guia", value: "Guia" }
+                  - { label: "Oficina", value: "Oficina" }
+                  - { label: "Material", value: "Material" }
+                  - { label: "Mídia", value: "Mídia" }
+                  - { label: "Notícia", value: "Notícia" }
               - label: "URLs por ano"
                 name: "yearUrls"
                 widget: "list"
+                label_singular: "URL"
+                summary: "{{fields.year}} → {{fields.url}}"
                 required: false
+                hint: "Adicione uma URL diferente para cada edição do projeto."
                 fields:
                   - label: "Ano"
                     name: "year"
                     widget: "number"
                     value_type: "int"
+                    min: 2018
+                    max: 2030
                   - label: "URL"
                     name: "url"
                     widget: "string"
+                    hint: "Link completo ou caminho. Ex: /docs/2025/regulamento.pdf"
 
       # ──────────────────────────────────────────
       # MATERIAIS
       # ──────────────────────────────────────────
       - name: "materials"
-        label: "Materiais Gerais sobre Inclusão"
+        label: "📚 Materiais sobre Inclusão"
         file: "src/content/materials.json"
         format: json
         fields:
           - label: "Lista de materiais"
             name: "materials"
             widget: "list"
+            label_singular: "Material"
+            summary: "{{fields.category}} — {{fields.title}}"
+            hint: "Arquivos disponíveis para download no modal de Materiais Gerais."
             fields:
-              - label: "Título"
+              - label: "Título do material"
                 name: "title"
                 widget: "string"
               - label: "Arquivo (caminho ou URL)"
                 name: "file"
                 widget: "string"
-                hint: "Ex: /docs/2025/materiais/arquivo.pdf"
+                hint: "Caminho do PDF. Ex: /docs/2025/materiais/arquivo.pdf"
               - label: "Categoria"
                 name: "category"
                 widget: "select"
+                hint: "Tipo do material — define a cor da etiqueta."
                 options:
-                  - "Cartilha"
-                  - "Artigo"
-                  - "Guia"
-                  - "Glossário"
-                  - "Legislação"
-                  - "Educativo"
-                  - "Acadêmico"
+                  - { label: "📘 Cartilha", value: "Cartilha" }
+                  - { label: "📝 Artigo", value: "Artigo" }
+                  - { label: "📗 Guia", value: "Guia" }
+                  - { label: "📙 Glossário", value: "Glossário" }
+                  - { label: "⚖️ Legislação", value: "Legislação" }
+                  - { label: "🎓 Educativo", value: "Educativo" }
+                  - { label: "🔬 Acadêmico", value: "Acadêmico" }
 
       # ──────────────────────────────────────────
       # CONFIGURAÇÕES GERAIS
       # ──────────────────────────────────────────
       - name: "settings"
-        label: "Configurações Gerais"
+        label: "⚙️ Configurações Gerais"
         file: "src/content/settings.json"
         format: json
         fields:
-          - label: "Navbar"
+          - label: "Menu de navegação"
             name: "navbar"
             widget: "object"
+            hint: "Itens exibidos no menu superior do site."
             fields:
               - label: "Itens do menu"
                 name: "items"
                 widget: "list"
+                label_singular: "Item"
+                summary: "{{fields.label}} ({{fields.href}})"
                 fields:
-                  - label: "Texto"
+                  - label: "Texto do item"
                     name: "label"
                     widget: "string"
+                    hint: "Ex: Início, Sobre, Links"
                   - label: "Link (âncora)"
                     name: "href"
                     widget: "string"
-          - label: "Rodapé (Footer)"
+                    hint: "Ex: # para o topo, #sobre para a seção Sobre"
+          - label: "Rodapé"
             name: "footer"
             widget: "object"
             fields:
-              - label: "Slogan"
+              - label: "Slogan do rodapé"
                 name: "tagline"
                 widget: "string"
+                hint: "Frase exibida abaixo do logo no rodapé."

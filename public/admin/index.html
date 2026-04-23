@@ -6,6 +6,85 @@
     <meta name="robots" content="noindex" />
     <title>Painel de Edição — IF Inclusão</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+      /* ── Cores do projeto ── */
+      :root {
+        --color-primary: #7c3aed;
+        --color-primary-light: #ede9fe;
+      }
+
+      /* ── Cabeçalho / toolbar ── */
+      [class*="AppHeader"],
+      [class*="Toolbar"],
+      header[class*="Header"] {
+        background: var(--color-primary) !important;
+      }
+
+      /* ── Botão "Publicar" e botões primários ── */
+      [class*="PublishButton"],
+      button[class*="primary"],
+      [class*="Button"][class*="primary"] {
+        background-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+      }
+
+      /* ── Links e destaques ── */
+      a[class*="active"],
+      [class*="NavLink"][class*="active"] {
+        color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+      }
+
+      /* ── Barra lateral ── */
+      [class*="Sidebar"],
+      nav[class*="Nav"] {
+        background: #1e1b4b !important;
+      }
+
+      [class*="Sidebar"] a,
+      nav[class*="Nav"] a {
+        color: #e0e7ff !important;
+      }
+
+      [class*="Sidebar"] a:hover,
+      nav[class*="Nav"] a:hover {
+        background: rgba(255,255,255,0.1) !important;
+        color: #fff !important;
+      }
+
+      /* ── Cabeçalho da coleção ── */
+      [class*="CollectionHeader"] {
+        border-left: 4px solid var(--color-primary) !important;
+        padding-left: 12px;
+      }
+
+      /* ── Itens da lista (cards de conteúdo) ── */
+      [class*="ListCard"],
+      [class*="EntryCard"] {
+        border-radius: 10px !important;
+        border: 1px solid #e5e7eb !important;
+        transition: box-shadow 0.2s, transform 0.2s;
+      }
+
+      [class*="ListCard"]:hover,
+      [class*="EntryCard"]:hover {
+        box-shadow: 0 4px 16px rgba(124,58,237,0.12) !important;
+        transform: translateY(-2px);
+      }
+
+      /* ── Campo em foco ── */
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+      }
+
+      /* ── Fonte geral ── */
+      body {
+        font-family: 'Inter', 'Segoe UI', sans-serif !important;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
