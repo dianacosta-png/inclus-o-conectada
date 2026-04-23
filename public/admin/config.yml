@@ -7,8 +7,8 @@ locale: pt
 site_url: https://if-inclusao.netlify.app
 logo_url: /favicon.png
 
-media_folder: public/fotos
-public_folder: /fotos
+media_folder: public/uploads
+public_folder: /uploads
 
 search: true
 
@@ -154,10 +154,17 @@ collections:
                     value_type: "int"
                     min: 2018
                     max: 2030
-                  - label: "URL"
+                  - label: "URL ou arquivo"
                     name: "url"
                     widget: "string"
-                    hint: "Link completo ou caminho. Ex: /docs/2025/regulamento.pdf"
+                    hint: "Cole um link externo (ex: https://...) ou o caminho de um PDF já enviado (ex: /docs/2025/regulamento.pdf)"
+                  - label: "Ou envie um PDF aqui"
+                    name: "pdfUpload"
+                    widget: "file"
+                    media_folder: "public/docs"
+                    public_folder: "/docs"
+                    required: false
+                    hint: "Opcional. Se fizer upload aqui, copie o caminho gerado e cole no campo 'URL ou arquivo' acima."
 
       # ──────────────────────────────────────────
       # MATERIAIS
@@ -177,10 +184,12 @@ collections:
               - label: "Título do material"
                 name: "title"
                 widget: "string"
-              - label: "Arquivo (caminho ou URL)"
+              - label: "Arquivo PDF"
                 name: "file"
-                widget: "string"
-                hint: "Caminho do PDF. Ex: /docs/2025/materiais/arquivo.pdf"
+                widget: "file"
+                media_folder: "public/docs/materiais"
+                public_folder: "/docs/materiais"
+                hint: "Clique para fazer upload do PDF. O arquivo será salvo em /docs/materiais/"
               - label: "Categoria"
                 name: "category"
                 widget: "select"
@@ -240,10 +249,12 @@ collections:
                 required: false
                 hint: "Fotos com nomes personalizados. Faça o upload em Mídia e cole o caminho aqui."
                 fields:
-                  - label: "Caminho da foto"
+                  - label: "Foto"
                     name: "src"
                     widget: "image"
-                    hint: "Faça upload ou cole o caminho. Ex: /fotos/2026/abertura.jpg"
+                    media_folder: "public/fotos"
+                    public_folder: "/fotos"
+                    hint: "Clique para fazer upload da foto."
                   - label: "Título"
                     name: "title"
                     widget: "string"
