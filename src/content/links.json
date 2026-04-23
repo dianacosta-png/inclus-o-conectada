@@ -1,0 +1,84 @@
+{
+  "years": [2026, 2025, 2024, 2023, 2022, 2021, 2020],
+  "categories": [
+    {
+      "icon": "FileText",
+      "title": "Formulário de Inscrição",
+      "description": "Preencha o formulário para participar do projeto IF Inclusão",
+      "url": "#",
+      "tag": "Inscrição",
+      "yearUrls": []
+    },
+    {
+      "icon": "BookMarked",
+      "title": "Regulamento",
+      "description": "Regras e diretrizes para participação no projeto",
+      "url": "#",
+      "tag": "Documento",
+      "yearUrls": [
+        { "year": 2020, "url": "/docs/2020/regulamento.pdf" },
+        { "year": 2021, "url": "/docs/2021/regulamento.pdf" },
+        { "year": 2024, "url": "/docs/2024/regulamento.pdf" },
+        { "year": 2025, "url": "/docs/2025/regulamento.pdf" }
+      ]
+    },
+    {
+      "icon": "FileText",
+      "title": "Proposta do Projeto",
+      "description": "Proposta e objetivos do projeto IF Inclusão",
+      "url": "#",
+      "tag": "Proposta",
+      "yearUrls": [
+        { "year": 2022, "url": "/docs/2022/proposta.pdf" },
+        { "year": 2023, "url": "/docs/2023/proposta.pdf" }
+      ]
+    },
+    {
+      "icon": "Globe",
+      "title": "Guia de Inclusão e Acessibilidade",
+      "description": "Orientações práticas sobre inclusão e acessibilidade",
+      "url": "#",
+      "tag": "Guia",
+      "yearUrls": []
+    },
+    {
+      "icon": "GraduationCap",
+      "title": "Apresentação da Oficina Preparatória",
+      "description": "Material da oficina preparatória do projeto",
+      "url": "#",
+      "tag": "Oficina",
+      "yearUrls": [
+        { "year": 2022, "url": "/docs/2022/apresentacao.pdf" },
+        { "year": 2023, "url": "/docs/2023/apresentacao.pdf" },
+        { "year": 2024, "url": "/docs/2024/apresentacao.pdf" },
+        { "year": 2025, "url": "/docs/2025/apresentacao.pdf" }
+      ]
+    },
+    {
+      "icon": "Building2",
+      "title": "Materiais Gerais sobre Inclusão",
+      "description": "Recursos e referências sobre inclusão e diversidade",
+      "url": "#",
+      "tag": "Material",
+      "yearUrls": []
+    },
+    {
+      "icon": "Camera",
+      "title": "Fotos e Vídeos",
+      "description": "Galeria de fotos e vídeos do projeto",
+      "url": "#",
+      "tag": "Mídia",
+      "yearUrls": []
+    },
+    {
+      "icon": "Newspaper",
+      "title": "Notícias",
+      "description": "Notícias e novidades sobre o projeto IF Inclusão",
+      "url": "#",
+      "tag": "Notícia",
+      "yearUrls": [
+        { "year": 2025, "url": "https://ifpr.edu.br/telemaco-borba/13o-if-inclusao-2025-educacao-inovacao-e-protagonismo-estudantil-na-construcao-de-uma-cultura-de-inclusao/" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "items": [
+      { "label": "Início", "href": "#" },
+      { "label": "Sobre", "href": "#sobre" },
+      { "label": "Links", "href": "#links" }
+    ]
+  },
+  "footer": {
+    "tagline": "Construindo um futuro mais inclusivo para todos."
+  }
+}

@@ -1,6 +1,9 @@
 import { Heart } from "lucide-react";
+import settingsData from "@/content/settings.json";
 
 const Footer = () => {
+  const { footer } = settingsData;
+
   return (
     <footer className="py-12 bg-foreground">
       <div className="container">
@@ -10,7 +13,7 @@ const Footer = () => {
               IF <span className="text-primary">Inclusão</span>
             </h3>
             <p className="text-background/60 mt-1 text-sm">
-              Construindo um futuro mais inclusivo para todos.
+              {footer.tagline}
             </p>
           </div>
           <div className="flex items-center gap-1 text-background/60 text-sm">

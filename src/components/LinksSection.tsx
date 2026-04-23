@@ -1,78 +1,38 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, FileText, Building2, GraduationCap, Globe, BookMarked, Camera, Newspaper, ChevronDown } from "lucide-react";
+import {
+  ExternalLink, FileText, Building2, GraduationCap, Globe,
+  BookMarked, Camera, Newspaper, ChevronDown, type LucideIcon,
+} from "lucide-react";
+import { PhotoGalleryModal } from "./PhotoGalleryModal";
+import { MaterialsModal } from "./MaterialsModal";
+import linksData from "@/content/links.json";
 
-const categories = [
-  {
-    icon: FileText,
-    title: "Formulário de Inscrição",
-    description: "Preencha o formulário para participar do projeto IF Inclusão",
-    url: "#",
-    tag: "Inscrição",
-  },
-  {
-    icon: BookMarked,
-    title: "Regulamento",
-    description: "Regras e diretrizes para participação no projeto",
-    url: "#",
-    tag: "Documento",
-    yearUrls: {
-      2025: "https://drive.google.com/file/d/1DM8XwhiaOvuDXvAE2ymw381l_77sV0-Y/view?usp=sharing",
-    } as Record<number, string>,
-  },
-  {
-    icon: Globe,
-    title: "Guia de Inclusão e Acessibilidade",
-    description: "Orientações práticas sobre inclusão e acessibilidade",
-    url: "#",
-    tag: "Guia",
-  },
-  {
-    icon: GraduationCap,
-    title: "Apresentação da Oficina Preparatória",
-    description: "Material da oficina preparatória do projeto",
-    url: "#",
-    tag: "Oficina",
-    yearUrls: {
-      2025: "https://drive.google.com/file/d/1SWWA9J0HfW844hAekp7YXs_-kFR0eK7M/view?usp=drive_link",
-    } as Record<number, string>,
-  },
-  {
-    icon: Building2,
-    title: "Materiais Gerais sobre Inclusão",
-    description: "Recursos e referências sobre inclusão e diversidade",
-    url: "#",
-    tag: "Material",
-    yearUrls: {
-      2025: "https://drive.google.com/drive/folders/1srKraqPgTqUrLYlI2C4BAQye2um4RpI2?usp=drive_link",
-    } as Record<number, string>,
-  },
-  {
-    icon: Camera,
-    title: "Fotos e Vídeos",
-    description: "Galeria de fotos e vídeos do projeto",
-    url: "#",
-    tag: "Mídia",
-    yearUrls: {
-      2025: "https://drive.google.com/file/d/1pt0JJBacKeYhEdFUyFy-KYj1_EfGjyH2/view?usp=drive_link",
-    } as Record<number, string>,
-  },
-  {
-    icon: Newspaper,
-    title: "Notícias",
-    description: "Notícias e novidades sobre o projeto IF Inclusão",
-    url: "#",
-    tag: "Notícia",
-    yearUrls: {
-      2025: "https://ifpr.edu.br/telemaco-borba/13o-if-inclusao-2025-educacao-inovacao-e-protagonismo-estudantil-na-construcao-de-uma-cultura-de-inclusao/",
-    } as Record<number, string>,
-  },
-];
+const iconMap: Record<string, LucideIcon> = {
+  FileText,
+  BookMarked,
+  Globe,
+  GraduationCap,
+  Building2,
+  Camera,
+  Newspaper,
+};
 
-const years = [2026, 2025, 2024, 2023, 2022, 2021, 2020];
+// Converte yearUrls de array [{year, url}] para Record<number, string>
+const categories = linksData.categories.map((cat) => ({
+  ...cat,
+  icon: iconMap[cat.icon] ?? FileText,
+  yearUrls: Object.fromEntries(
+    cat.yearUrls.map(({ year, url }) => [year, url])
+  ) as Record<number, string>,
+}));
+
+const years = linksData.years;
 
 const LinksSection = () => {
-  const [openYears, setOpenYears] = useState<Set<number>>(new Set([2026]));
+  const [openYears, setOpenYears] = useState<Set<number>>(new Set([years[0]]));
+  const [galleryYear, setGalleryYear] = useState<number | null>(null);
+  const [materialsYear, setMaterialsYear] = useState<number | null>(null);
 
   const toggleYear = (year: number) => {
     setOpenYears((prev) => {
@@ -128,33 +88,89 @@ const LinksSection = () => {
                   >
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8">
                       {categories
-                        .filter((link) => year === 2026 || (link.tag !== "Inscrição" && link.tag !== "Guia"))
-                        .map((link, i) => (
-                        <motion.a
-                          key={`${year}-${link.title}`}
-                          href={link.yearUrls?.[year] || link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.05 }}
-                          className="group bg-background rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all hover:-translate-y-1"
-                        >
-                          <div className="flex items-start justify-between mb-4">
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                              <link.icon className="w-6 h-6 text-primary" />
-                            </div>
-                            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">
-                              {link.tag}
-                            </span>
-                          </div>
-                          <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors flex items-center gap-2">
-                            {link.title}
-                            <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </h3>
-                          <p className="text-muted-foreground text-sm leading-relaxed">{link.description}</p>
-                        </motion.a>
-                      ))}
+                        .filter((link) => {
+                          if (year === years[0]) return true;
+                          if (link.tag === "Inscrição" || link.tag === "Guia") return false;
+                          if (link.tag === "Mídia") return [2023, 2025].includes(year);
+                          if (link.tag === "Material") return [2023, 2024, 2025].includes(year);
+                          return !!(link.yearUrls?.[year] || (link.url !== "#"));
+                        })
+                        .map((link, i) => {
+                          const isGallery = link.tag === "Mídia";
+                          const isMaterials = link.tag === "Material";
+                          const isComingSoon = year === years[0];
+
+                          const cardContent = (
+                            <>
+                              {isComingSoon && (
+                                <div className="absolute top-3 left-3">
+                                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">
+                                    Em breve
+                                  </span>
+                                </div>
+                              )}
+                              <div className={`flex items-start justify-between mb-4 ${isComingSoon ? "mt-6" : ""}`}>
+                                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                  <link.icon className={`w-6 h-6 ${isComingSoon ? "text-muted-foreground" : "text-primary"}`} />
+                                </div>
+                                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">
+                                  {link.tag}
+                                </span>
+                              </div>
+                              <h3 className={`text-lg font-bold mb-2 flex items-center gap-2 ${isComingSoon ? "text-muted-foreground" : "group-hover:text-primary transition-colors"}`}>
+                                {link.title}
+                                {!isComingSoon && !isGallery && !isMaterials && (
+                                  <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                )}
+                              </h3>
+                              <p className="text-muted-foreground text-sm leading-relaxed">{link.description}</p>
+                            </>
+                          );
+
+                          if (isComingSoon) {
+                            return (
+                              <motion.div
+                                key={`${year}-${link.title}`}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.05 }}
+                                className="relative bg-muted/40 rounded-2xl p-6 border border-border/50 opacity-60 cursor-not-allowed select-none"
+                              >
+                                {cardContent}
+                              </motion.div>
+                            );
+                          }
+
+                          if (isGallery || isMaterials) {
+                            return (
+                              <motion.button
+                                key={`${year}-${link.title}`}
+                                onClick={() => isGallery ? setGalleryYear(year) : setMaterialsYear(year)}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.05 }}
+                                className="relative group bg-background rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all hover:-translate-y-1 text-left w-full cursor-pointer"
+                              >
+                                {cardContent}
+                              </motion.button>
+                            );
+                          }
+
+                          return (
+                            <motion.a
+                              key={`${year}-${link.title}`}
+                              href={link.yearUrls?.[year] || link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: i * 0.05 }}
+                              className="relative group bg-background rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all hover:-translate-y-1"
+                            >
+                              {cardContent}
+                            </motion.a>
+                          );
+                        })}
                     </div>
                   </motion.div>
                 )}
@@ -163,6 +179,22 @@ const LinksSection = () => {
           );
         })}
       </div>
+
+      {galleryYear !== null && (
+        <PhotoGalleryModal
+          isOpen={galleryYear !== null}
+          onClose={() => setGalleryYear(null)}
+          year={galleryYear}
+        />
+      )}
+
+      {materialsYear !== null && (
+        <MaterialsModal
+          isOpen={materialsYear !== null}
+          onClose={() => setMaterialsYear(null)}
+          year={materialsYear}
+        />
+      )}
     </section>
   );
 };

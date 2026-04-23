@@ -1,0 +1,193 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: pt
+
+media_folder: public/fotos
+public_folder: /fotos
+
+collections:
+  - name: "secoes"
+    label: "Seções do Site"
+    files:
+
+      # ──────────────────────────────────────────
+      # HERO
+      # ──────────────────────────────────────────
+      - name: "hero"
+        label: "Início (Hero)"
+        file: "src/content/hero.json"
+        format: json
+        fields:
+          - label: "Texto do selo"
+            name: "badge"
+            widget: "string"
+            hint: "Ex: Promovendo acessibilidade e igualdade"
+          - label: "Descrição"
+            name: "description"
+            widget: "text"
+          - label: "Texto do botão principal"
+            name: "button1"
+            widget: "string"
+          - label: "Texto do botão secundário"
+            name: "button2"
+            widget: "string"
+
+      # ──────────────────────────────────────────
+      # SOBRE
+      # ──────────────────────────────────────────
+      - name: "about"
+        label: "Sobre o Projeto"
+        file: "src/content/about.json"
+        format: json
+        fields:
+          - label: "Título da seção"
+            name: "title"
+            widget: "string"
+          - label: "Descrição da seção"
+            name: "description"
+            widget: "text"
+          - label: "Cards"
+            name: "items"
+            widget: "list"
+            fields:
+              - label: "Ícone"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Coração", value: "Heart" }
+                  - { label: "Pessoas", value: "Users" }
+                  - { label: "Escudo", value: "ShieldCheck" }
+                  - { label: "Proibido", value: "Ban" }
+              - label: "Título"
+                name: "title"
+                widget: "string"
+              - label: "Descrição"
+                name: "description"
+                widget: "text"
+              - label: "Cor do card"
+                name: "className"
+                widget: "select"
+                options:
+                  - { label: "Verde", value: "gradient-card-teal" }
+                  - { label: "Laranja", value: "gradient-card-warm" }
+                  - { label: "Roxo", value: "gradient-card-purple" }
+
+      # ──────────────────────────────────────────
+      # LINKS
+      # ──────────────────────────────────────────
+      - name: "links"
+        label: "Links de Consulta"
+        file: "src/content/links.json"
+        format: json
+        fields:
+          - label: "Categorias de links"
+            name: "categories"
+            widget: "list"
+            fields:
+              - label: "Ícone"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Documento", value: "FileText" }
+                  - { label: "Livro marcado", value: "BookMarked" }
+                  - { label: "Globo", value: "Globe" }
+                  - { label: "Formatura", value: "GraduationCap" }
+                  - { label: "Prédio", value: "Building2" }
+                  - { label: "Câmera", value: "Camera" }
+                  - { label: "Jornal", value: "Newspaper" }
+              - label: "Título"
+                name: "title"
+                widget: "string"
+              - label: "Descrição"
+                name: "description"
+                widget: "text"
+              - label: "URL padrão (use # se não houver)"
+                name: "url"
+                widget: "string"
+              - label: "Tipo (tag)"
+                name: "tag"
+                widget: "select"
+                options:
+                  - "Inscrição"
+                  - "Documento"
+                  - "Proposta"
+                  - "Guia"
+                  - "Oficina"
+                  - "Material"
+                  - "Mídia"
+                  - "Notícia"
+              - label: "URLs por ano"
+                name: "yearUrls"
+                widget: "list"
+                required: false
+                fields:
+                  - label: "Ano"
+                    name: "year"
+                    widget: "number"
+                    value_type: "int"
+                  - label: "URL"
+                    name: "url"
+                    widget: "string"
+
+      # ──────────────────────────────────────────
+      # MATERIAIS
+      # ──────────────────────────────────────────
+      - name: "materials"
+        label: "Materiais Gerais sobre Inclusão"
+        file: "src/content/materials.json"
+        format: json
+        fields:
+          - label: "Lista de materiais"
+            name: "materials"
+            widget: "list"
+            fields:
+              - label: "Título"
+                name: "title"
+                widget: "string"
+              - label: "Arquivo (caminho ou URL)"
+                name: "file"
+                widget: "string"
+                hint: "Ex: /docs/2025/materiais/arquivo.pdf"
+              - label: "Categoria"
+                name: "category"
+                widget: "select"
+                options:
+                  - "Cartilha"
+                  - "Artigo"
+                  - "Guia"
+                  - "Glossário"
+                  - "Legislação"
+                  - "Educativo"
+                  - "Acadêmico"
+
+      # ──────────────────────────────────────────
+      # CONFIGURAÇÕES GERAIS
+      # ──────────────────────────────────────────
+      - name: "settings"
+        label: "Configurações Gerais"
+        file: "src/content/settings.json"
+        format: json
+        fields:
+          - label: "Navbar"
+            name: "navbar"
+            widget: "object"
+            fields:
+              - label: "Itens do menu"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Texto"
+                    name: "label"
+                    widget: "string"
+                  - label: "Link (âncora)"
+                    name: "href"
+                    widget: "string"
+          - label: "Rodapé (Footer)"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Slogan"
+                name: "tagline"
+                widget: "string"

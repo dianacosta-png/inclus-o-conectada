@@ -2,16 +2,11 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import napneLogo from "@/assets/napne-logo.png";
 import ifInclusaoLogo from "@/assets/if-inclusao-logo.png";
-
-const navItems = [
-  { label: "Início", href: "#" },
-  { label: "Sobre", href: "#sobre" },
-  
-  { label: "Links", href: "#links" },
-];
+import settingsData from "@/content/settings.json";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { navbar } = settingsData;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
@@ -23,7 +18,7 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
+          {navbar.items.map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -47,7 +42,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-background border-t border-border">
-          {navItems.map((item) => (
+          {navbar.items.map((item) => (
             <a
               key={item.label}
               href={item.href}

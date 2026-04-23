@@ -1,0 +1,18 @@
+{
+  "materials": [
+    { "title": "Cartilha Viva Acessibilidade", "file": "/docs/2025/materiais/cartilha-viva-acessibilidade.pdf", "category": "Cartilha" },
+    { "title": "Artigo sobre Capacitismo", "file": "/docs/2025/materiais/artigo-capacitismo.pdf", "category": "Artigo" },
+    { "title": "Artigo sobre Capacitismo (2)", "file": "/docs/2025/materiais/artigo-capacitismo-2.pdf", "category": "Artigo" },
+    { "title": "Como Lidar com Deficiências", "file": "/docs/2025/materiais/cartilha-como-lidar-deficiencias.pdf", "category": "Cartilha" },
+    { "title": "Direitos da Pessoa com Deficiência (Defensoria Pública)", "file": "/docs/2025/materiais/cartilha-direitos-defensoria.pdf", "category": "Cartilha" },
+    { "title": "Cartilha de Inclusão (PUC)", "file": "/docs/2025/materiais/cartilha-inclusao-puc.pdf", "category": "Cartilha" },
+    { "title": "Dicas: Relacionamento com PCDs", "file": "/docs/2025/materiais/dicas-relacionamento-pcd.pdf", "category": "Guia" },
+    { "title": "Diretrizes: Atenção à Síndrome de Down", "file": "/docs/2025/materiais/diretrizes-sindrome-down.pdf", "category": "Guia" },
+    { "title": "Glossário de Acessibilidade (Câmara dos Deputados)", "file": "/docs/2025/materiais/glossario-acessibilidade.pdf", "category": "Glossário" },
+    { "title": "Guia de Inclusão e Acessibilidade", "file": "/docs/2025/materiais/guia-inclusao.pdf", "category": "Guia" },
+    { "title": "Lei Brasileira de Inclusão", "file": "/docs/2025/materiais/lei-brasileira-inclusao.pdf", "category": "Legislação" },
+    { "title": "Libras", "file": "/docs/2025/materiais/libras.pdf", "category": "Educativo" },
+    { "title": "Linha de Cuidado: Pessoas com Transtorno", "file": "/docs/2025/materiais/linha-cuidado-transtorno.pdf", "category": "Guia" },
+    { "title": "Produto PROFEPT (Priscila Godoy)", "file": "/docs/2025/materiais/produto-profept.pdf", "category": "Acadêmico" }
+  ]
+}

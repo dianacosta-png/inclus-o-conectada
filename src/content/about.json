@@ -1,0 +1,30 @@
+{
+  "title": "Sobre o Projeto",
+  "description": "O IF Inclusão, em sua 14ª edição, é um evento anual promovido pela Coordenadoria do Núcleo de Atendimento às Pessoas com Necessidades Específicas (NAPNE) do IFPR – Campus Telêmaco Borba.",
+  "items": [
+    {
+      "icon": "Heart",
+      "title": "Direitos e Dignidade",
+      "description": "Fomentar o respeito pelos direitos, dignidade e inclusão das pessoas com necessidades específicas.",
+      "className": "gradient-card-teal"
+    },
+    {
+      "icon": "Users",
+      "title": "Conscientização",
+      "description": "Desenvolver ações de conscientização para garantir o êxito e a permanência de estudantes do público de inclusão.",
+      "className": "gradient-card-warm"
+    },
+    {
+      "icon": "ShieldCheck",
+      "title": "Acesso à Informação",
+      "description": "Romper barreiras atitudinais por meio do acesso à informação.",
+      "className": "gradient-card-purple"
+    },
+    {
+      "icon": "Ban",
+      "title": "Prevenção à Violência",
+      "description": "Prevenir tipos de violência (bullying, discriminação e preconceito) no ambiente escolar.",
+      "className": "gradient-card-teal"
+    }
+  ]
+}

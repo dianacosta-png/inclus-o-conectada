@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Heart, Users, ArrowDown } from "lucide-react";
 import InclusionShapes from "./InclusionShapes";
 import heroImage from "@/assets/hero-inclusion.png";
+import heroData from "@/content/hero.json";
 
 const HeroSection = () => {
   return (
@@ -16,15 +17,14 @@ const HeroSection = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 mb-6">
             <Heart className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Promovendo acessibilidade e igualdade</span>
+            <span className="text-sm font-medium text-primary">{heroData.badge}</span>
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 font-blueberry">
             <span className="text-secondary">IF</span>{" "}
             <span className="bg-gradient-to-r from-primary to-green bg-clip-text text-transparent">Inclusão</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed">
-            Um projeto dedicado a promover a inclusão de pessoas com deficiência, garantindo acesso à informação, 
-            direitos e oportunidades para todos.
+            {heroData.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a
@@ -32,13 +32,13 @@ const HeroSection = () => {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-opacity"
             >
               <Users className="w-5 h-5" />
-              Conheça o Projeto
+              {heroData.button1}
             </a>
             <a
               href="#links"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-primary text-primary font-semibold text-lg hover:bg-primary/5 transition-colors"
             >
-              Links Úteis
+              {heroData.button2}
             </a>
           </div>
         </motion.div>
