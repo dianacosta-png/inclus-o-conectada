@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, Camera, Play, Images, Youtube } from "luc
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import videosData from "@/content/videos.json";
+import photosData from "@/content/photos.json";
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
@@ -24,21 +25,34 @@ type VideoItem = {
 
 type Tab = "fotos" | "videos";
 
-// ── Fotos (geradas por contagem de arquivos) ───────────────────────────────
+// ── Fotos: combina fotos numeradas + fotos avulsas do JSON ─────────────────
 
-const makePhotos = (year: number, count: number, ext: string): PhotoItem[] =>
-  Array.from({ length: count }, (_, i) => ({
+function buildPhotos(year: number): PhotoItem[] {
+  const gallery = photosData.galleries.find((g) => g.year === year);
+  if (!gallery) return [];
+
+  const numbered: PhotoItem[] = Array.from({ length: gallery.autoCount ?? 0 }, (_, i) => ({
     id: i + 1,
-    src: `/fotos/${year}/${i + 1}.${ext}`,
-    thumb: `/fotos/${year}/${i + 1}.${ext}`,
+    src: `/fotos/${year}/${i + 1}.${gallery.autoExt}`,
+    thumb: `/fotos/${year}/${i + 1}.${gallery.autoExt}`,
     title: `Foto ${i + 1}`,
     category: "Evento",
   }));
 
-const photosByYear: Record<number, PhotoItem[]> = {
-  2023: makePhotos(2023, 123, "jpg"),
-  2025: makePhotos(2025, 42, "png"),
-};
+  const custom: PhotoItem[] = (gallery.photos ?? []).map((p, i) => ({
+    id: (gallery.autoCount ?? 0) + i + 1,
+    src: p.src,
+    thumb: p.src,
+    title: p.title,
+    category: p.category,
+  }));
+
+  return [...numbered, ...custom];
+}
+
+const photosByYear: Record<number, PhotoItem[]> = Object.fromEntries(
+  photosData.galleries.map((g) => [g.year, buildPhotos(g.year)])
+);
 
 // ── Cores das categorias ───────────────────────────────────────────────────
 

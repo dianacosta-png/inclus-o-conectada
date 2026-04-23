@@ -1,0 +1,16 @@
+{
+  "galleries": [
+    {
+      "year": 2023,
+      "autoCount": 123,
+      "autoExt": "jpg",
+      "photos": []
+    },
+    {
+      "year": 2025,
+      "autoCount": 42,
+      "autoExt": "png",
+      "photos": []
+    }
+  ]
+}

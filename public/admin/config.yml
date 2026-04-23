@@ -195,6 +195,72 @@ collections:
                   - { label: "🔬 Acadêmico", value: "Acadêmico" }
 
       # ──────────────────────────────────────────
+      # GALERIAS DE FOTOS
+      # ──────────────────────────────────────────
+      - name: "photos"
+        label: "🖼️ Galerias de Fotos"
+        file: "src/content/photos.json"
+        format: json
+        fields:
+          - label: "Galerias por ano"
+            name: "galleries"
+            widget: "list"
+            label_singular: "Galeria"
+            summary: "{{fields.year}} ({{fields.autoCount}} fotos numeradas)"
+            hint: "Cada galeria corresponde a um ano do projeto."
+            fields:
+              - label: "Ano"
+                name: "year"
+                widget: "number"
+                value_type: "int"
+                min: 2018
+                max: 2030
+              - label: "Quantidade de fotos numeradas"
+                name: "autoCount"
+                widget: "number"
+                value_type: "int"
+                default: 0
+                min: 0
+                hint: "Se as fotos estão nomeadas 1.jpg, 2.jpg, 3.jpg... informe a quantidade total aqui."
+              - label: "Extensão das fotos numeradas"
+                name: "autoExt"
+                widget: "select"
+                default: "jpg"
+                hint: "Formato dos arquivos numerados."
+                options:
+                  - { label: "JPG", value: "jpg" }
+                  - { label: "PNG", value: "png" }
+                  - { label: "JPEG", value: "jpeg" }
+                  - { label: "WEBP", value: "webp" }
+              - label: "Fotos avulsas"
+                name: "photos"
+                widget: "list"
+                label_singular: "Foto"
+                summary: "{{fields.title}}"
+                required: false
+                hint: "Fotos com nomes personalizados. Faça o upload em Mídia e cole o caminho aqui."
+                fields:
+                  - label: "Caminho da foto"
+                    name: "src"
+                    widget: "image"
+                    hint: "Faça upload ou cole o caminho. Ex: /fotos/2026/abertura.jpg"
+                  - label: "Título"
+                    name: "title"
+                    widget: "string"
+                  - label: "Categoria"
+                    name: "category"
+                    widget: "select"
+                    default: "Evento"
+                    options:
+                      - { label: "🎉 Evento", value: "Evento" }
+                      - { label: "🛠️ Oficina", value: "Oficina" }
+                      - { label: "🎤 Apresentação", value: "Apresentação" }
+                      - { label: "🏃 Atividade", value: "Atividade" }
+                      - { label: "💬 Debate", value: "Debate" }
+                      - { label: "🖼️ Exposição", value: "Exposição" }
+                      - { label: "📢 Palestra", value: "Palestra" }
+
+      # ──────────────────────────────────────────
       # VÍDEOS YOUTUBE
       # ──────────────────────────────────────────
       - name: "videos"

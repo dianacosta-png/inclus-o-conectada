@@ -7,6 +7,13 @@ import {
 import { PhotoGalleryModal } from "./PhotoGalleryModal";
 import { MaterialsModal } from "./MaterialsModal";
 import linksData from "@/content/links.json";
+import photosData from "@/content/photos.json";
+import videosData from "@/content/videos.json";
+
+const yearsWithMedia = new Set([
+  ...photosData.galleries.map((g) => g.year),
+  ...videosData.videos.map((v) => v.year),
+]);
 
 const iconMap: Record<string, LucideIcon> = {
   FileText,
@@ -91,7 +98,7 @@ const LinksSection = () => {
                         .filter((link) => {
                           if (year === years[0]) return true;
                           if (link.tag === "Inscrição" || link.tag === "Guia") return false;
-                          if (link.tag === "Mídia") return [2023, 2025].includes(year);
+                          if (link.tag === "Mídia") return yearsWithMedia.has(year);
                           if (link.tag === "Material") return [2023, 2024, 2025].includes(year);
                           return !!(link.yearUrls?.[year] || (link.url !== "#"));
                         })
