@@ -195,6 +195,49 @@ collections:
                   - { label: "🔬 Acadêmico", value: "Acadêmico" }
 
       # ──────────────────────────────────────────
+      # VÍDEOS YOUTUBE
+      # ──────────────────────────────────────────
+      - name: "videos"
+        label: "▶️ Vídeos do YouTube"
+        file: "src/content/videos.json"
+        format: json
+        fields:
+          - label: "Vídeos"
+            name: "videos"
+            widget: "list"
+            label_singular: "Vídeo"
+            summary: "{{fields.year}} — {{fields.title}}"
+            hint: "Adicione vídeos do YouTube para exibir na galeria de cada ano."
+            fields:
+              - label: "Ano"
+                name: "year"
+                widget: "number"
+                value_type: "int"
+                min: 2018
+                max: 2030
+                hint: "Ano da edição do projeto. Ex: 2025"
+              - label: "Título do vídeo"
+                name: "title"
+                widget: "string"
+                hint: "Ex: IF Inclusão 2025 — Cerimônia de Abertura"
+              - label: "ID do vídeo no YouTube"
+                name: "youtubeId"
+                widget: "string"
+                hint: "Cole apenas o código do vídeo. Ex: se o link for youtube.com/watch?v=dQw4w9WgXcQ, cole dQw4w9WgXcQ"
+              - label: "Categoria"
+                name: "category"
+                widget: "select"
+                default: "Evento"
+                options:
+                  - { label: "🎉 Evento", value: "Evento" }
+                  - { label: "🛠️ Oficina", value: "Oficina" }
+                  - { label: "🎤 Apresentação", value: "Apresentação" }
+                  - { label: "🏃 Atividade", value: "Atividade" }
+                  - { label: "💬 Debate", value: "Debate" }
+                  - { label: "🖼️ Exposição", value: "Exposição" }
+                  - { label: "📢 Palestra", value: "Palestra" }
+
+      # ──────────────────────────────────────────
       # CONFIGURAÇÕES GERAIS
       # ──────────────────────────────────────────
       - name: "settings"
