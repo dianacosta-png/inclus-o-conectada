@@ -4,7 +4,7 @@ backend:
 
 locale: pt
 
-site_url: https://if-inclusao.netlify.app
+site_url: https://ifinclusao.netlify.app
 logo_url: /favicon.png
 
 media_folder: public/uploads
