@@ -1,3 +1,16 @@
 {
-  "videos": []
+  "videos": [
+    {
+      "category": "Atividade",
+      "year": 2024,
+      "youtubeId": "https://www.youtube.com/watch?v=oqfT8Nhs7y8",
+      "title": "Projeto - Curso de Mecânica 2"
+    },
+    {
+      "category": "Atividade",
+      "year": 2024,
+      "title": "Projeto - Curso de Jogos 1",
+      "youtubeId": "https://www.youtube.com/watch?v=RGj0wf21VqM"
+    }
+  ]
 }
