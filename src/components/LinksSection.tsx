@@ -105,28 +105,22 @@ const LinksSection = () => {
                         .map((link, i) => {
                           const isGallery = link.tag === "Mídia";
                           const isMaterials = link.tag === "Material";
-                          const isComingSoon = year === years[0];
+                          const href = link.yearUrls?.[year] || link.url;
+                          const hasLink = !!href && href !== "#";
 
                           const cardContent = (
                             <>
-                              {isComingSoon && (
-                                <div className="absolute top-3 left-3">
-                                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">
-                                    Em breve
-                                  </span>
-                                </div>
-                              )}
-                              <div className={`flex items-start justify-between mb-4 ${isComingSoon ? "mt-6" : ""}`}>
+                              <div className="flex items-start justify-between mb-4">
                                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                                  <link.icon className={`w-6 h-6 ${isComingSoon ? "text-muted-foreground" : "text-primary"}`} />
+                                  <link.icon className="w-6 h-6 text-primary" />
                                 </div>
                                 <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">
                                   {link.tag}
                                 </span>
                               </div>
-                              <h3 className={`text-lg font-bold mb-2 flex items-center gap-2 ${isComingSoon ? "text-muted-foreground" : "group-hover:text-primary transition-colors"}`}>
+                              <h3 className="text-lg font-bold mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
                                 {link.title}
-                                {!isComingSoon && !isGallery && !isMaterials && (
+                                {hasLink && !isGallery && !isMaterials && (
                                   <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 )}
                               </h3>
@@ -134,14 +128,14 @@ const LinksSection = () => {
                             </>
                           );
 
-                          if (isComingSoon) {
+                          if (!isGallery && !isMaterials && !hasLink) {
                             return (
                               <motion.div
                                 key={`${year}-${link.title}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.05 }}
-                                className="relative bg-muted/40 rounded-2xl p-6 border border-border/50 opacity-60 cursor-not-allowed select-none"
+                                className="relative bg-background rounded-2xl p-6 border border-border"
                               >
                                 {cardContent}
                               </motion.div>
