@@ -161,7 +161,7 @@ collections:
                   - label: "Ou envie um PDF aqui"
                     name: "pdfUpload"
                     widget: "file"
-                    media_folder: "public/docs"
+                    media_folder: "/public/docs"
                     public_folder: "/docs"
                     required: false
                     hint: "Opcional. Se fizer upload aqui, copie o caminho gerado e cole no campo 'URL ou arquivo' acima."
