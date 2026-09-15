@@ -218,7 +218,7 @@ export function PhotoGalleryModal({ isOpen, onClose, year }: PhotoGalleryModalPr
                     className="group relative rounded-xl overflow-hidden aspect-video bg-black focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   >
                     <img
-                      src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                      src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
                       alt={video.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                       loading="lazy"
@@ -237,7 +237,8 @@ export function PhotoGalleryModal({ isOpen, onClose, year }: PhotoGalleryModalPr
                       </span>
                     </div>
                   </motion.button>
-                ))}
+                  );
+                })}
               </div>
             )}
 
