@@ -31,6 +31,10 @@
         {
           "year": 2025,
           "url": "/docs/2025/regulamento.pdf"
+        },
+        {
+          "year": 2026,
+          "pdfUpload": "/docs/regulamento-if-inclusão-2026.pdf"
         }
       ]
     },
@@ -48,6 +52,11 @@
         {
           "year": 2023,
           "url": "/docs/2023/proposta.pdf"
+        },
+        {
+          "year": 2026,
+          "pdfUpload": "/docs/proposta-2026.pdf",
+          "url": "/docs/proposta-2026.pdf"
         }
       ]
     },
