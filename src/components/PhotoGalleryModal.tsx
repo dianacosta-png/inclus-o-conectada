@@ -54,6 +54,16 @@ const photosByYear: Record<number, PhotoItem[]> = Object.fromEntries(
   photosData.galleries.map((g) => [g.year, buildPhotos(g.year)])
 );
 
+// ── Extrai o ID do YouTube a partir de URL completa ou ID puro ─────────────
+
+function extractYoutubeId(value: string): string {
+  const v = value.trim();
+  const match = v.match(
+    /(?:youtube\.com\/(?:watch\?[^#]*v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/
+  );
+  return match ? match[1] : v;
+}
+
 // ── Cores das categorias ───────────────────────────────────────────────────
 
 const categoryColors: Record<string, string> = {
@@ -196,17 +206,19 @@ export function PhotoGalleryModal({ isOpen, onClose, year }: PhotoGalleryModalPr
             {/* Grade de vídeos YouTube */}
             {(!showTabs || activeTab === "videos") && hasVideos && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {videos.map((video, index) => (
+                {videos.map((video, index) => {
+                  const ytId = extractYoutubeId(video.youtubeId);
+                  return (
                   <motion.button
-                    key={video.youtubeId}
+                    key={ytId}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    onClick={() => setActiveVideoId(video.youtubeId)}
+                    onClick={() => setActiveVideoId(ytId)}
                     className="group relative rounded-xl overflow-hidden aspect-video bg-black focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   >
                     <img
-                      src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                      src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
                       alt={video.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                       loading="lazy"
@@ -225,7 +237,8 @@ export function PhotoGalleryModal({ isOpen, onClose, year }: PhotoGalleryModalPr
                       </span>
                     </div>
                   </motion.button>
-                ))}
+                  );
+                })}
               </div>
             )}
 
