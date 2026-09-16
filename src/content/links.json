@@ -124,7 +124,12 @@
       "description": "Galeria de fotos e vídeos do projeto",
       "url": "#",
       "tag": "Mídia",
-      "yearUrls": []
+      "yearUrls": [
+        {
+          "year": 2026,
+          "url": "https://drive.google.com/drive/folders/1N_MQ6zY-rqqApd0HK7q6fK4hXXRa-6X3?usp=drive_link"
+        }
+      ]
     },
     {
       "icon": "Newspaper",
