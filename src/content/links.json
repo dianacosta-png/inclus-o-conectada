@@ -96,16 +96,27 @@
         {
           "year": 2025,
           "url": "/docs/2025/apresentacao.pdf"
+        },
+        {
+          "year": 2026,
+          "pdfUpload": "/docs/apresentação-if-inclusão-2026.pdf",
+          "url": "/docs/apresentação-if-inclusão-2026.pdf"
         }
       ]
     },
     {
-      "icon": "Building2",
+      "icon": "BookMarked",
       "title": "Materiais Gerais sobre Inclusão",
       "description": "Recursos e referências sobre inclusão e diversidade",
       "url": "#",
       "tag": "Material",
-      "yearUrls": []
+      "yearUrls": [
+        {
+          "year": 2026,
+          "pdfUpload": "https://drive.google.com/drive/folders/1Ke1V7eqiCldLSAJn4WCM3Ju9ziIGximM?usp=drive_link",
+          "url": "https://drive.google.com/drive/folders/1Ke1V7eqiCldLSAJn4WCM3Ju9ziIGximM?usp=drive_link"
+        }
+      ]
     },
     {
       "icon": "Camera",
