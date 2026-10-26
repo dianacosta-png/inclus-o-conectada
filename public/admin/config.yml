@@ -276,6 +276,11 @@ collections:
                   - { label: "PNG", value: "png" }
                   - { label: "JPEG", value: "jpeg" }
                   - { label: "WEBP", value: "webp" }
+              - label: "Enviar várias fotos"
+                name: "uploads"
+                widget: "multiimage"
+                required: false
+                hint: "Arraste ou selecione várias fotos de uma vez, confira as prévias e clique em Enviar."
               - label: "Fotos avulsas"
                 name: "photos"
                 widget: "list"
