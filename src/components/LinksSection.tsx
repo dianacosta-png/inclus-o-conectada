@@ -134,7 +134,7 @@ const LinksSection = () => {
                             </>
                           );
 
-                          if (!isGallery && !isMaterials && !hasLink) {
+                          if (!isGallery && !isMaterials && !isNews && !hasLink) {
                             return (
                               <motion.div
                                 key={`${year}-${link.title}`}
