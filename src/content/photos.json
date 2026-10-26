@@ -11,6 +11,12 @@
       "autoCount": 42,
       "autoExt": "png",
       "photos": []
+    },
+    {
+      "autoCount": 184,
+      "autoExt": "jpg",
+      "year": 2026,
+      "photos": []
     }
   ]
 }
