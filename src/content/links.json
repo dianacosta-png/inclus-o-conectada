@@ -63,9 +63,15 @@
       "icon": "Globe",
       "title": "Guia de Inclusão e Acessibilidade",
       "description": "Orientações práticas sobre inclusão e acessibilidade",
-      "url": "#",
+      "url": "3",
       "tag": "Guia",
-      "yearUrls": []
+      "yearUrls": [
+        {
+          "year": 2026,
+          "pdfUpload": "/docs/guia-de-inclusão-e-acessibilidade.pdf",
+          "url": "/docs/guia-de-inclusão-e-acessibilidade.pdf"
+        }
+      ]
     },
     {
       "icon": "GraduationCap",
@@ -89,6 +95,11 @@
         {
           "year": 2025,
           "url": "/docs/2025/apresentacao.pdf"
+        },
+        {
+          "year": 2026,
+          "pdfUpload": "/docs/apresentação-if-inclusão-2026-1-.pdf",
+          "url": "/docs/apresentação-if-inclusão-2026-1-.pdf"
         }
       ]
     },
