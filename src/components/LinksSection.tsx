@@ -9,6 +9,7 @@ import { MaterialsModal } from "./MaterialsModal";
 import linksData from "@/content/links.json";
 import photosData from "@/content/photos.json";
 import videosData from "@/content/videos.json";
+import { NewsModal, hasNewsFor } from "./NewsModal";
 
 const yearsWithMedia = new Set([
   ...photosData.galleries.map((g) => g.year),
@@ -40,6 +41,7 @@ const LinksSection = () => {
   const [openYears, setOpenYears] = useState<Set<number>>(new Set([years[0]]));
   const [galleryYear, setGalleryYear] = useState<number | null>(null);
   const [materialsYear, setMaterialsYear] = useState<number | null>(null);
+  const [newsYear, setNewsYear] = useState<number | null>(null);
 
   const toggleYear = (year: number) => {
     setOpenYears((prev) => {
@@ -96,6 +98,9 @@ const LinksSection = () => {
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8">
                       {categories
                         .filter((link) => {
+                          if (link.tag === "Notícia") {
+                            return hasNewsFor(year) || !!link.yearUrls?.[year];
+                          }
                           if (year === years[0]) return true;
                           if (link.tag === "Inscrição" || link.tag === "Guia") return false;
                           if (link.tag === "Mídia") return yearsWithMedia.has(year);
@@ -105,6 +110,7 @@ const LinksSection = () => {
                         .map((link, i) => {
                           const isGallery = link.tag === "Mídia";
                           const isMaterials = link.tag === "Material";
+                          const isNews = link.tag === "Notícia" && hasNewsFor(year);
                           const href = link.yearUrls?.[year] || link.url;
                           const hasLink = !!href && href !== "#";
 
@@ -120,7 +126,7 @@ const LinksSection = () => {
                               </div>
                               <h3 className="text-lg font-bold mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
                                 {link.title}
-                                {hasLink && !isGallery && !isMaterials && (
+                                {hasLink && !isGallery && !isMaterials && !isNews && (
                                   <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 )}
                               </h3>
@@ -128,7 +134,7 @@ const LinksSection = () => {
                             </>
                           );
 
-                          if (!isGallery && !isMaterials && !hasLink) {
+                          if (!isGallery && !isMaterials && !isNews && !hasLink) {
                             return (
                               <motion.div
                                 key={`${year}-${link.title}`}
@@ -142,11 +148,17 @@ const LinksSection = () => {
                             );
                           }
 
-                          if (isGallery || isMaterials) {
+                          if (isGallery || isMaterials || isNews) {
                             return (
                               <motion.button
                                 key={`${year}-${link.title}`}
-                                onClick={() => isGallery ? setGalleryYear(year) : setMaterialsYear(year)}
+                                onClick={() =>
+                                  isGallery
+                                    ? setGalleryYear(year)
+                                    : isMaterials
+                                      ? setMaterialsYear(year)
+                                      : setNewsYear(year)
+                                }
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.05 }}
@@ -194,6 +206,14 @@ const LinksSection = () => {
           isOpen={materialsYear !== null}
           onClose={() => setMaterialsYear(null)}
           year={materialsYear}
+        />
+      )}
+
+      {newsYear !== null && (
+        <NewsModal
+          isOpen={newsYear !== null}
+          onClose={() => setNewsYear(null)}
+          year={newsYear}
         />
       )}
     </section>

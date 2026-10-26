@@ -167,6 +167,41 @@ collections:
                     hint: "Opcional. Se fizer upload aqui, copie o caminho gerado e cole no campo 'URL ou arquivo' acima."
 
       # ──────────────────────────────────────────
+      # NOTÍCIAS
+      # ──────────────────────────────────────────
+      - name: "noticias"
+        label: "📰 Notícias"
+        file: "src/content/news.json"
+        format: json
+        fields:
+          - label: "Lista de notícias"
+            name: "news"
+            widget: "list"
+            label_singular: "Notícia"
+            summary: "{{fields.year}} — {{fields.title}}"
+            hint: "Cada notícia aparece na lista que abre ao clicar no card 'Notícias' do ano correspondente."
+            fields:
+              - label: "Ano"
+                name: "year"
+                widget: "number"
+                value_type: "int"
+                min: 2018
+                max: 2030
+                hint: "Ano da edição do projeto. Ex: 2026"
+              - label: "Título da notícia"
+                name: "title"
+                widget: "string"
+                hint: "Ex: IFPR Campus Telêmaco Borba realiza 14ª edição do IF Inclusão"
+              - label: "Fonte / veículo"
+                name: "source"
+                widget: "string"
+                hint: "Ex: IFPR Paraná ou IFPR Campus Telêmaco Borba"
+              - label: "Link da notícia"
+                name: "url"
+                widget: "string"
+                hint: "Cole o endereço completo da notícia. Ex: https://ifpr.edu.br/..."
+
+      # ──────────────────────────────────────────
       # MATERIAIS
       # ──────────────────────────────────────────
       - name: "materials"
