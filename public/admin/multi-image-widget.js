@@ -3,9 +3,24 @@
 (function () {
   if (!window.CMS) return;
   var h = window.h;
-  var BRANCH = "main";
   var FOLDER = "public/fotos/uploads";
   var PUBLIC = "/fotos/uploads";
+  var activeBackend;
+  var gateway = window.CMS.getBackend("git-gateway");
+  if (gateway && gateway.BackendClass) {
+    var prototype = gateway.BackendClass.prototype;
+    var authenticate = prototype.authenticate;
+    prototype.authenticate = async function () {
+      var result = await authenticate.apply(this, arguments);
+      activeBackend = this;
+      return result;
+    };
+    var logout = prototype.logout;
+    prototype.logout = function () {
+      activeBackend = undefined;
+      return logout.apply(this, arguments);
+    };
+  }
 
   function toList(v) {
     if (!v) return [];
@@ -28,16 +43,15 @@
     });
   }
   async function uploadFile(file) {
-    var user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
-    if (!user) throw new Error("Faça login novamente no painel.");
-    var token = await user.jwt();
+    if (!activeBackend) throw new Error("Saia e entre novamente no painel para enviar fotos.");
     var name = slug(file.name);
-    var resp = await fetch("/.netlify/git/github/contents/" + FOLDER + "/" + name, {
-      method: "PUT",
-      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Upload de foto " + name, content: await toBase64(file), branch: BRANCH }),
+    await activeBackend.persistMedia({
+      path: FOLDER + "/" + name,
+      fileObj: file,
+      toBase64: function () { return toBase64(file); },
+    }, {
+      commitMessage: "Upload de foto " + name,
     });
-    if (!resp.ok) throw new Error("Falha ao enviar " + file.name + " (" + resp.status + ")");
     return PUBLIC + "/" + name;
   }
 
@@ -83,7 +97,7 @@
           self.props.onChange(saved);
           self.setState({ pending: left.slice() });
         } catch (e) {
-          self.setState({ busy: false, error: e.message });
+          self.setState({ busy: false, error: e.message || "Não foi possível enviar a foto. Tente novamente." });
           return;
         }
       }
