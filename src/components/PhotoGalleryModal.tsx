@@ -25,7 +25,7 @@ type VideoItem = {
 
 type Tab = "fotos" | "videos";
 
-// ── Fotos: combina fotos numeradas + fotos avulsas do JSON ─────────────────
+// ── Fotos: combina fotos numeradas + avulsas + enviadas em lote do JSON ─────────────────
 
 function buildPhotos(year: number): PhotoItem[] {
   const gallery = photosData.galleries.find((g) => g.year === year);
@@ -47,7 +47,18 @@ function buildPhotos(year: number): PhotoItem[] {
     category: p.category,
   }));
 
-  return [...numbered, ...custom];
+  const uploads = ((gallery as { uploads?: unknown }).uploads ?? []) as unknown[];
+  const uploaded: PhotoItem[] = uploads
+    .filter((src): src is string => typeof src === "string" && src.length > 0)
+    .map((src, i) => ({
+      id: (gallery.autoCount ?? 0) + custom.length + i + 1,
+      src,
+      thumb: src,
+      title: `Foto ${(gallery.autoCount ?? 0) + custom.length + i + 1}`,
+      category: "Evento",
+    }));
+
+  return [...numbered, ...custom, ...uploaded];
 }
 
 const photosByYear: Record<number, PhotoItem[]> = Object.fromEntries(
