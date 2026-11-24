@@ -27,6 +27,18 @@
     return v || fallback;
   }
 
+  function isHeic(f) { return /^image\/hei[cf]/.test(f.type) || /\.hei[cf]$/i.test(f.name); }
+  function isImage(f) { return /^image\//.test(f.type) || isHeic(f); }
+  // Converte fotos HEIC/HEIF (iPhone) para JPEG, que todos os navegadores exibem.
+  function fromHeic(f) {
+    if (!isHeic(f)) return Promise.resolve(f);
+    if (typeof window.heic2any !== "function") return Promise.reject(new Error("Não foi possível converter a foto HEIC \"" + f.name + "\". Recarregue a página e tente novamente."));
+    return window.heic2any({ blob: f, toType: "image/jpeg", quality: 0.85 }).then(function (b) {
+      if (Array.isArray(b)) b = b[0];
+      return new File([b], f.name.replace(/\.[^.]+$/, "") + ".jpg", { type: "image/jpeg" });
+    }, function () { throw new Error("Não foi possível converter a foto HEIC \"" + f.name + "\". Tente outra foto ou converta para JPG."); });
+  }
+
   // Reduz fotos grandes (ex.: de celular) para evitar falhas no envio.
   function compress(file) {
     if (file.size <= COMPRESS_OVER || !/^image\/(jpeg|png|webp)$/.test(file.type)) return Promise.resolve(file);
@@ -90,9 +102,18 @@
     },
     addFiles: function (files) {
       if (this.state.busy) return;
-      var imgs = Array.prototype.filter.call(files, function (f) { return /^image\//.test(f.type); });
-      var add = imgs.map(function (f) { return { file: f, url: URL.createObjectURL(f) }; });
-      this.setState({ pending: this.state.pending.concat(add), notice: "", error: imgs.length < files.length ? "Alguns arquivos não são imagens e foram ignorados." : "" });
+      var self = this;
+      var all = Array.prototype.slice.call(files);
+      var imgs = all.filter(isImage);
+      var skipped = imgs.length < all.length ? "Alguns arquivos não são imagens e foram ignorados. " : "";
+      var heic = imgs.some(isHeic);
+      if (heic) self.setState({ notice: "Convertendo fotos HEIC...", error: "" });
+      Promise.all(imgs.map(function (f) { return fromHeic(f).then(function (x) { return x; }, function (e) { return e; }); })).then(function (res) {
+        var ok = res.filter(function (x) { return !(x instanceof Error); });
+        var errs = res.filter(function (x) { return x instanceof Error; }).map(function (e) { return e.message; });
+        var add = ok.map(function (f) { return { file: f, url: URL.createObjectURL(f) }; });
+        self.setState({ pending: self.state.pending.concat(add), notice: "", error: (skipped + errs.join(" ")).trim() });
+      });
     },
     removePending: function (i) {
       var p = this.state.pending.slice();
@@ -145,8 +166,8 @@
           onDrop: function (e) { e.preventDefault(); self.setState({ over: false }); self.addFiles(e.dataTransfer.files); },
         },
           h("strong", null, "Arraste as fotos aqui ou clique para selecionar"),
-          h("div", { style: {"fontSize": "12px", "marginTop": "4px"} }, "Você pode escolher várias imagens de uma vez (até 10 MB cada)."),
-          h("input", { type: "file", accept: "image/*", multiple: true, disabled: this.state.busy, onClick: function (e) { e.stopPropagation(); }, style: {"display": "none"},
+          h("div", { style: {"fontSize": "12px", "marginTop": "4px"} }, "Você pode escolher várias imagens de uma vez, inclusive HEIC do iPhone (até 10 MB cada)."),
+          h("input", { type: "file", accept: "image/*,.heic,.heif", multiple: true, disabled: this.state.busy, onClick: function (e) { e.stopPropagation(); }, style: {"display": "none"},
             ref: function (el) { input = el; },
             onChange: function (e) { self.addFiles(e.target.files); e.target.value = ""; } })
         ),

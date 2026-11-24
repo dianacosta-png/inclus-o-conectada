@@ -8,6 +8,7 @@ function loadControl() {
   const host = {
     CMS: { registerWidget: vi.fn((_name, control) => { Control = control; }) },
     h: React.createElement,
+    heic2any: (globalThis as any).heic2any,
     createClass: (spec: any) => {
       class Widget extends React.Component<any, any> {
         constructor(props: any) {
@@ -44,8 +45,9 @@ describe("administrative gallery", () => {
     const { container } = render(<Control value={["/fotos/existing.jpg"]} onChange={changed} onPersistMedia={persist} field={field} />);
     const files = [new File(["a"], "a.jpg", { type: "image/jpeg" }), new File(["b"], "b.jpg", { type: "image/jpeg" })];
     select(container, files);
+    await screen.findByRole("button", { name: "Adicionar 2 foto(s)" });
     fireEvent.click(screen.getAllByTitle("Remover")[0]);
-    fireEvent.click(screen.getByRole("button", { name: "Adicionar 1 foto(s)" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Adicionar 1 foto(s)" }));
     await waitFor(() => expect(changed).toHaveBeenCalledTimes(1));
     expect(persist).toHaveBeenCalledTimes(1);
     expect(persist.mock.calls[0][0].name).toMatch(/-b\.jpg$/);
@@ -60,7 +62,7 @@ describe("administrative gallery", () => {
     const changed = vi.fn();
     const { container } = render(<Control value={[]} onChange={changed} onPersistMedia={persist} field={field} />);
     select(container, [new File(["c"], "festa.jpg", { type: "image/jpeg" })]);
-    fireEvent.click(screen.getByRole("button", { name: "Adicionar 1 foto(s)" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Adicionar 1 foto(s)" }));
     const alert = await screen.findByRole("alert");
     expect(alert.textContent).toContain('Não foi possível adicionar a foto "festa.jpg"');
     expect(changed).not.toHaveBeenCalled();
@@ -74,9 +76,25 @@ describe("administrative gallery", () => {
     const { container } = render(<Control value={[]} onChange={vi.fn()} onPersistMedia={persist} field={field} />);
     const big = new File([new Uint8Array(11 * 1024 * 1024)], "grande.gif", { type: "image/gif" });
     select(container, [big]);
-    fireEvent.click(screen.getByRole("button", { name: "Adicionar 1 foto(s)" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Adicionar 1 foto(s)" }));
     const alert = await screen.findByRole("alert");
     expect(alert.textContent).toContain("O limite é 10 MB por foto");
     expect(persist).not.toHaveBeenCalled();
+  });
+
+  it("converts HEIC photos to JPG before adding", async () => {
+    vi.stubGlobal("URL", { createObjectURL: vi.fn(() => "blob:x"), revokeObjectURL: vi.fn() });
+    const heic2any = vi.fn().mockResolvedValue(new Blob(["j"], { type: "image/jpeg" }));
+    vi.stubGlobal("heic2any", heic2any);
+    const Control = loadControl();
+    const persist = vi.fn().mockResolvedValue({});
+    const changed = vi.fn();
+    const { container } = render(<Control value={[]} onChange={changed} onPersistMedia={persist} field={field} />);
+    select(container, [new File(["h"], "IMG_1.HEIC", { type: "" })]);
+    fireEvent.click(await screen.findByRole("button", { name: "Adicionar 1 foto(s)" }));
+    await waitFor(() => expect(changed).toHaveBeenCalledTimes(1));
+    expect(heic2any).toHaveBeenCalledTimes(1);
+    expect(persist.mock.calls[0][0].name).toMatch(/-img-1\.jpg$/);
+    expect(persist.mock.calls[0][0].type).toBe("image/jpeg");
   });
 });
